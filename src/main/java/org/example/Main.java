@@ -15,6 +15,7 @@ public class Main {
         try {
             Map<Integer, Employee> employees = analyzer.readEmployees("employees.csv");
             analyzer.buildHierarchyAndCalculateAverageSalary(employees);
+            analyzer.checkReportingLine(employees);
             analyzer.checkSalaries(employees);
         } catch (IOException e) {
             e.printStackTrace();

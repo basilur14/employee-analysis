@@ -39,6 +39,20 @@ public class CompanyAnalyzer {
         return employees;
     }
 
+    public void checkReportingLine(Map<Integer, Employee> employees) {
+        for (Employee employee : employees.values()) {
+            int reportingLineLength = 0;
+            Integer managerId = employee.getManagerId();
+            while (managerId != null) {
+                reportingLineLength++;
+                managerId = employees.get(managerId).getManagerId();
+            }
+            if (reportingLineLength > 4) {
+                System.out.println(employee.getFirstName() + " " + employee.getLastName() + " has a reporting line which is too long by " + (reportingLineLength - 4));
+            }
+        }
+    }
+
     public void buildHierarchyAndCalculateAverageSalary(Map<Integer, Employee> employees) {
         for (Employee employee : employees.values()) {
             if (employee.getManagerId() != null) {
